@@ -1,0 +1,2181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050816" />
+    <meta
+      name="description"
+      content="SJIS Quantum Club — exploring quantum physics, modern physics, astronomy, particle science and scientific innovation."
+    />
+    <title>SJIS Quantum Club | Beyond the Classical</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+              display: [
+                "Space Grotesk",
+                "Inter",
+                "ui-sans-serif",
+                "system-ui",
+                "sans-serif",
+              ],
+            },
+            colors: {
+              quantum: {
+                bg: "#050816",
+                panel: "#0a1026",
+                cyan: "#66f7ff",
+                violet: "#9b7cff",
+                mint: "#7cffc4",
+                pink: "#ff7ae6",
+              },
+            },
+            boxShadow: {
+              glow: "0 0 45px rgba(102,247,255,.16)",
+              "glow-strong": "0 0 80px rgba(155,124,255,.22)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #050816;
+        --panel: rgba(10, 16, 38, 0.66);
+        --line: rgba(255, 255, 255, 0.1);
+        --cyan: #66f7ff;
+        --violet: #9b7cff;
+        --mint: #7cffc4;
+        --pink: #ff7ae6;
+        --mx: 50vw;
+        --my: 50vh;
+      }
+
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      html {
+        background: var(--bg);
+      }
+      body {
+        margin: 0;
+        color: #f4f7ff;
+        background:
+          radial-gradient(
+            circle at 20% 15%,
+            rgba(102, 247, 255, 0.08),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 82% 20%,
+            rgba(155, 124, 255, 0.1),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 50% 80%,
+            rgba(124, 255, 196, 0.055),
+            transparent 32%
+          ),
+          var(--bg);
+        overflow-x: hidden;
+        font-family: Inter, system-ui, sans-serif;
+        cursor: none;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -4;
+        pointer-events: none;
+        opacity: 0.28;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 44px 44px;
+        mask-image: radial-gradient(
+          circle at center,
+          black 0%,
+          transparent 85%
+        );
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            260px circle at var(--mx) var(--my),
+            rgba(102, 247, 255, 0.11),
+            transparent 65%
+          ),
+          radial-gradient(
+            180px circle at calc(var(--mx) + 80px) calc(var(--my) - 30px),
+            rgba(155, 124, 255, 0.07),
+            transparent 70%
+          );
+        transition: background 0.08s linear;
+      }
+
+      a,
+      button,
+      [role="button"] {
+        cursor: none;
+      }
+
+      .glass {
+        background: linear-gradient(
+          135deg,
+          rgba(14, 22, 51, 0.72),
+          rgba(7, 11, 28, 0.56)
+        );
+        border: 1px solid var(--line);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.24);
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          100deg,
+          #ffffff 0%,
+          var(--cyan) 42%,
+          var(--violet) 78%,
+          var(--pink) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #a6b4d6;
+      }
+
+      .section-wrap {
+        width: min(1180px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+      .noise {
+        position: relative;
+        overflow: hidden;
+      }
+      .noise::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+      }
+
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        border-radius: 999px;
+        mix-blend-mode: screen;
+      }
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--cyan);
+        box-shadow: 0 0 18px 7px rgba(102, 247, 255, 0.55);
+      }
+      .cursor-ring {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(102, 247, 255, 0.55);
+        box-shadow:
+          0 0 22px rgba(102, 247, 255, 0.14) inset,
+          0 0 22px rgba(102, 247, 255, 0.1);
+        transition:
+          width 0.18s ease,
+          height 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease;
+      }
+      body.cursor-hover .cursor-ring {
+        width: 62px;
+        height: 62px;
+        border-color: rgba(155, 124, 255, 0.75);
+        background: rgba(155, 124, 255, 0.05);
+      }
+
+      .nav-link {
+        position: relative;
+        color: #9daccc;
+        transition: 0.25s ease;
+      }
+      .nav-link:hover {
+        color: white;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 100%;
+        bottom: -7px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--cyan), var(--violet));
+        transition: right 0.25s ease;
+      }
+      .nav-link:hover::after {
+        right: 0;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3.5rem;
+        align-items: center;
+      }
+
+      .hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3.2rem, 8vw, 7.8rem);
+        line-height: 0.88;
+        letter-spacing: -0.065em;
+        max-width: 900px;
+      }
+
+      .hero-orbit {
+        width: min(520px, 86vw);
+        aspect-ratio: 1;
+        position: relative;
+        margin: auto;
+        filter: drop-shadow(0 0 48px rgba(102, 247, 255, 0.1));
+      }
+
+      .orbit-ring {
+        position: absolute;
+        inset: 11%;
+        border: 1px solid rgba(102, 247, 255, 0.24);
+        border-radius: 50%;
+        transform: rotate(-26deg) scaleY(0.52);
+      }
+      .orbit-ring.r2 {
+        transform: rotate(57deg) scaleY(0.52);
+        border-color: rgba(155, 124, 255, 0.25);
+      }
+      .orbit-ring.r3 {
+        transform: rotate(0deg) scaleY(0.6);
+        border-color: rgba(124, 255, 196, 0.18);
+      }
+      .nucleus {
+        position: absolute;
+        inset: 39%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 35% 35%,
+          #ffffff 0 3%,
+          #7af8ff 4% 17%,
+          #7f70ff 35%,
+          rgba(127, 112, 255, 0.16) 66%,
+          transparent 70%
+        );
+        box-shadow:
+          0 0 20px rgba(102, 247, 255, 0.7),
+          0 0 60px rgba(155, 124, 255, 0.36),
+          0 0 120px rgba(102, 247, 255, 0.14);
+      }
+
+      .electron {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 12px 5px rgba(102, 247, 255, 0.65);
+        left: 50%;
+        top: 50%;
+        transform-origin: 0 0;
+      }
+      .e1 {
+        animation: orbit1 8s linear infinite;
+      }
+      .e2 {
+        animation: orbit2 11s linear infinite reverse;
+        box-shadow: 0 0 12px 5px rgba(155, 124, 255, 0.7);
+      }
+      .e3 {
+        animation: orbit3 14s linear infinite;
+        box-shadow: 0 0 12px 5px rgba(124, 255, 196, 0.65);
+      }
+      @keyframes orbit1 {
+        from {
+          transform: rotate(0deg) translateX(145px) rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg) translateX(145px) rotate(-360deg);
+        }
+      }
+      @keyframes orbit2 {
+        from {
+          transform: rotate(20deg) translateX(175px) scale(0.9);
+        }
+        to {
+          transform: rotate(380deg) translateX(175px) scale(0.9);
+        }
+      }
+      @keyframes orbit3 {
+        from {
+          transform: rotate(140deg) translateX(120px);
+        }
+        to {
+          transform: rotate(500deg) translateX(120px);
+        }
+      }
+
+      .quantum-tag {
+        position: absolute;
+        padding: 0.45rem 0.7rem;
+        font-size: 0.68rem;
+        color: #c2cee7;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 999px;
+        background: rgba(6, 12, 30, 0.55);
+        backdrop-filter: blur(10px);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      .topic-card,
+      .event-card,
+      .role-card {
+        transform-style: preserve-3d;
+        transition:
+          transform 0.18s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .topic-card:hover,
+      .event-card:hover,
+      .role-card:hover {
+        border-color: rgba(102, 247, 255, 0.32);
+        box-shadow: 0 0 45px rgba(102, 247, 255, 0.08);
+      }
+
+      .icon-orb {
+        width: 50px;
+        height: 50px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.15),
+            transparent 28%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(102, 247, 255, 0.12),
+            rgba(155, 124, 255, 0.13)
+          );
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 14px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          var(--cyan),
+          rgba(255, 255, 255, 0.08),
+          var(--violet)
+        );
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 50px;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: 7px;
+        top: 8px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #071022;
+        border: 2px solid var(--cyan);
+        box-shadow: 0 0 16px rgba(102, 247, 255, 0.45);
+      }
+
+      .lab-screen {
+        position: relative;
+        min-height: 390px;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 50% 48%,
+            rgba(102, 247, 255, 0.09),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 82% 50%,
+            rgba(155, 124, 255, 0.08),
+            transparent 22%
+          ),
+          #020617;
+      }
+      .lab-topbar {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 9px 11px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 13px;
+        background: rgba(2, 6, 23, 0.58);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .lab-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #a7b6d8;
+      }
+      .lab-status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #7cffc4;
+        box-shadow: 0 0 12px rgba(124, 255, 196, 0.9);
+      }
+      .lab-chip {
+        font-size: 0.62rem;
+        color: #8c9abb;
+        padding: 5px 7px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.025);
+      }
+      .lab-caption {
+        position: absolute;
+        left: 16px;
+        bottom: 14px;
+        z-index: 3;
+        font-size: 0.67rem;
+        color: rgba(185, 198, 227, 0.58);
+        letter-spacing: 0.04em;
+        pointer-events: none;
+      }
+
+      .lab-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .lab-overlay {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(2, 6, 23, 0.1),
+          rgba(2, 6, 23, 0.54)
+        );
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        color: #b6c5e9;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        border-radius: 999px;
+        padding: 0.9rem 1.15rem;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #03121a;
+        background: linear-gradient(90deg, #7ffcff, #a8a0ff);
+        box-shadow: 0 0 35px rgba(102, 247, 255, 0.17);
+        transition:
+          transform 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 50px rgba(155, 124, 255, 0.24);
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        border-radius: 999px;
+        padding: 0.9rem 1.15rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #dce5f8;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        transition: 0.22s ease;
+      }
+      .btn-ghost:hover {
+        border-color: rgba(102, 247, 255, 0.28);
+        background: rgba(102, 247, 255, 0.05);
+      }
+
+      .marquee {
+        display: flex;
+        gap: 3rem;
+        white-space: nowrap;
+        animation: marquee 22s linear infinite;
+        width: max-content;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .stat-number {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1;
+      }
+      .micro-grid {
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .mobile-menu.open {
+        max-height: 480px;
+      }
+
+      @media (max-width: 900px) {
+        body {
+          cursor: auto;
+        }
+        a,
+        button,
+        [role="button"] {
+          cursor: pointer;
+        }
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-orbit {
+          margin-top: 0.5rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .section-wrap {
+          width: min(100% - 1.15rem, 1180px);
+        }
+        .hero-title {
+          font-size: clamp(3rem, 16vw, 5.5rem);
+        }
+        .orbit-ring {
+          inset: 14%;
+        }
+        @keyframes orbit1 {
+          from {
+            transform: rotate(0deg) translateX(95px);
+          }
+          to {
+            transform: rotate(360deg) translateX(95px);
+          }
+        }
+        @keyframes orbit2 {
+          from {
+            transform: rotate(20deg) translateX(115px) scale(0.85);
+          }
+          to {
+            transform: rotate(380deg) translateX(115px) scale(0.85);
+          }
+        }
+        @keyframes orbit3 {
+          from {
+            transform: rotate(140deg) translateX(82px);
+          }
+          to {
+            transform: rotate(500deg) translateX(82px);
+          }
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+        .marquee {
+          animation: none;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAV -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+      <div class="section-wrap pt-3">
+        <nav
+          class="glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between"
+        >
+          <a href="#home" class="flex items-center gap-3 font-semibold">
+            <!-- Official Quantum Club Logo Badge -->
+            <div
+              class="relative w-11 h-11 rounded-full border border-slate-400/40 bg-[#121626] overflow-hidden flex items-center justify-center p-0.5 shadow-[0_0_15px_rgba(102,247,255,0.2)]"
+            >
+              <img
+                src="781804597_17896312809598742_6676653192766011676_n.jpg"
+                alt="SJIS Quantum Club logo"
+                class="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            <span class="hidden sm:block leading-tight">
+              <span class="block text-sm font-bold tracking-wide">SJIS</span>
+              <span class="block text-xs text-slate-400">Quantum Club</span>
+            </span>
+          </a>
+
+          <div class="hidden md:flex items-center gap-7 text-sm">
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#workshop">Workshop</a>
+            <a class="nav-link" href="#fields">Quantum Fields</a>
+            <a class="nav-link" href="#lab">Quantum Lab</a>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <a
+              href="https://www.facebook.com/profile.php?id=61593544353894"
+              target="_blank"
+              rel="noopener"
+              class="hidden sm:inline-flex btn-ghost !py-2.5"
+            >
+              Facebook ↗
+            </a>
+            <a href="#join" class="btn-primary !py-2.5">Join the Club</a>
+            <button
+              id="menuBtn"
+              class="md:hidden w-10 h-10 rounded-xl border border-white/10 bg-white/5 text-slate-200"
+              aria-label="Open menu"
+            >
+              ☰
+            </button>
+          </div>
+        </nav>
+
+        <div
+          id="mobileMenu"
+          class="mobile-menu md:hidden mt-2 glass rounded-2xl"
+        >
+          <div class="p-4 grid gap-3 text-sm">
+            <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/5"
+              >About</a
+            >
+            <a href="#workshop" class="px-3 py-2 rounded-lg hover:bg-white/5"
+              >Workshop</a
+            >
+            <a href="#fields" class="px-3 py-2 rounded-lg hover:bg-white/5"
+              >Quantum Fields</a
+            >
+            <a href="#lab" class="px-3 py-2 rounded-lg hover:bg-white/5"
+              >Quantum Lab</a
+            >
+            <a
+              href="https://www.facebook.com/profile.php?id=61593544353894"
+              target="_blank"
+              rel="noopener"
+              class="px-3 py-2 rounded-lg bg-white/5"
+              >Facebook ↗</a
+            >
+            <a
+              href="https://www.instagram.com/quantumclub.sjis/?hl=bn"
+              target="_blank"
+              rel="noopener"
+              class="px-3 py-2 rounded-lg bg-white/5"
+              >Instagram ↗</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <!-- HERO -->
+      <section
+        class="relative min-h-screen pt-32 sm:pt-36 pb-16 flex items-center overflow-hidden"
+      >
+        <canvas
+          id="quantumCanvas"
+          class="absolute inset-0 w-full h-full opacity-80"
+        ></canvas>
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_70%_38%,rgba(102,247,255,.08),transparent_28%),radial-gradient(circle_at_80%_58%,rgba(155,124,255,.08),transparent_30%)]"
+        ></div>
+
+        <div class="section-wrap relative">
+          <div class="hero-grid">
+            <div class="relative z-10">
+              <div class="eyebrow mb-5 reveal">
+                St. Joseph International School · Mohammadpur, Dhaka
+              </div>
+              <h1 class="hero-title font-display reveal">
+                <span class="block">Beyond</span>
+                <span class="block gradient-text">the Classical.</span>
+              </h1>
+              <p
+                class="mt-7 max-w-2xl text-slate-300/85 text-base sm:text-lg leading-8 reveal"
+              >
+                A student-driven space for exploring quantum physics, modern
+                physics, astronomy, particle science, scientific thinking and
+                the ideas shaping tomorrow.
+              </p>
+
+              <div class="mt-8 flex flex-wrap gap-3 reveal">
+                <a href="#lab" class="btn-primary"
+                  >Enter the Quantum Lab <span>→</span></a
+                >
+                <a href="#workshop" class="btn-ghost">Upcoming Workshop</a>
+              </div>
+
+              <div class="mt-9 flex flex-wrap gap-2 reveal">
+                <span class="pill">⚛ Quantum Mechanics</span>
+                <span class="pill">◌ Astronomy</span>
+                <span class="pill">⌁ Particle Physics</span>
+                <span class="pill">∿ Quantum Computing</span>
+              </div>
+            </div>
+
+            <div
+              class="relative min-h-[430px] flex items-center justify-center reveal"
+            >
+              <div
+                class="hero-orbit"
+                id="heroOrbit"
+                aria-label="Animated quantum atom"
+              >
+                <div
+                  class="absolute inset-[2%] rounded-full border border-white/5"
+                ></div>
+                <div class="orbit-ring"></div>
+                <div class="orbit-ring r2"></div>
+                <div class="orbit-ring r3"></div>
+                <div class="nucleus"></div>
+                <div class="electron e1"></div>
+                <div class="electron e2"></div>
+                <div class="electron e3"></div>
+
+                <div class="quantum-tag left-[7%] top-[20%]">wavefunction</div>
+                <div class="quantum-tag right-[2%] top-[34%]">
+                  superposition
+                </div>
+                <div class="quantum-tag left-[14%] bottom-[20%]">
+                  entanglement
+                </div>
+                <div class="quantum-tag right-[12%] bottom-[14%]">
+                  uncertainty
+                </div>
+                <div
+                  class="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[150px] text-center"
+                >
+                  <div
+                    class="text-[10px] tracking-[.28em] uppercase text-slate-500"
+                  >
+                    observe · question · experiment
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 border-t border-white/10 pt-6 overflow-hidden">
+            <div class="marquee text-xs sm:text-sm text-slate-500">
+              <span>QUANTUM MECHANICS</span><span>•</span
+              ><span>ASTROPHYSICS</span><span>•</span
+              ><span>PARTICLE PHYSICS</span><span>•</span
+              ><span>QUANTUM COMPUTING</span><span>•</span
+              ><span>RELATIVITY</span><span>•</span
+              ><span>EXPERIMENTAL SCIENCE</span> <span>QUANTUM MECHANICS</span
+              ><span>•</span><span>ASTROPHYSICS</span><span>•</span
+              ><span>PARTICLE PHYSICS</span><span>•</span
+              ><span>QUANTUM COMPUTING</span><span>•</span
+              ><span>RELATIVITY</span><span>•</span
+              ><span>EXPERIMENTAL SCIENCE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-24 sm:py-32">
+        <div class="section-wrap">
+          <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 items-start">
+            <div class="reveal">
+              <div class="eyebrow mb-4">01 · About the club</div>
+              <h2
+                class="font-display text-4xl sm:text-5xl font-semibold leading-tight"
+              >
+                A place to turn
+                <span class="gradient-text">curiosity</span> into physics.
+              </h2>
+            </div>
+
+            <div class="glass noise rounded-3xl p-7 sm:p-9 reveal">
+              <p class="text-slate-300 leading-8">
+                The SJIS Quantum Club is presented as a learning community where
+                students can question how nature works at the smallest and
+                largest scales—from particles and probability to stars, black
+                holes and the structure of the universe.
+              </p>
+              <p class="mt-5 text-slate-400 leading-8">
+                Through talks, demonstrations, problem-solving, projects,
+                observations and collaborative activities, members can build
+                scientific intuition while developing communication, research
+                and experimental thinking.
+              </p>
+
+              <div class="mt-8 grid sm:grid-cols-3 gap-3">
+                <div
+                  class="rounded-2xl border border-white/8 bg-white/[.025] p-4"
+                >
+                  <div class="text-cyan-200 text-2xl">01</div>
+                  <div class="mt-2 font-semibold">Learn</div>
+                  <div class="text-xs text-slate-500 mt-1">
+                    Concepts beyond the textbook
+                  </div>
+                </div>
+                <div
+                  class="rounded-2xl border border-white/8 bg-white/[.025] p-4"
+                >
+                  <div class="text-violet-200 text-2xl">02</div>
+                  <div class="mt-2 font-semibold">Explore</div>
+                  <div class="text-xs text-slate-500 mt-1">
+                    Questions worth investigating
+                  </div>
+                </div>
+                <div
+                  class="rounded-2xl border border-white/8 bg-white/[.025] p-4"
+                >
+                  <div class="text-mint-200 text-2xl">03</div>
+                  <div class="mt-2 font-semibold">Create</div>
+                  <div class="text-xs text-slate-500 mt-1">
+                    Projects, experiments & ideas
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-7 reveal">
+            <div class="glass rounded-2xl p-5">
+              <div class="stat-number gradient-text">∞</div>
+              <div class="text-sm font-semibold mt-2">Questions</div>
+              <div class="text-xs text-slate-500 mt-1">
+                The beginning of science
+              </div>
+            </div>
+            <div class="glass rounded-2xl p-5">
+              <div class="stat-number text-cyan-200">6+</div>
+              <div class="text-sm font-semibold mt-2">Exploration Areas</div>
+              <div class="text-xs text-slate-500 mt-1">
+                Physics to astronomy
+              </div>
+            </div>
+            <div class="glass rounded-2xl p-5">
+              <div class="stat-number text-violet-200">1</div>
+              <div class="text-sm font-semibold mt-2">Student Community</div>
+              <div class="text-xs text-slate-500 mt-1">Learn together</div>
+            </div>
+            <div class="glass rounded-2xl p-5">
+              <div class="stat-number text-mint-200">4D</div>
+              <div class="text-sm font-semibold mt-2">Think Beyond</div>
+              <div class="text-xs text-slate-500 mt-1">
+                Space, time, matter, mind
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKSHOP SECTION -->
+      <section id="workshop" class="py-24 sm:py-32 relative">
+        <div class="section-wrap">
+          <div class="eyebrow mb-4 reveal">02 · Upcoming Event</div>
+          <div
+            class="glass noise rounded-[2.5rem] p-8 sm:p-12 border border-cyan-300/20 relative overflow-hidden reveal"
+          >
+            <!-- Atmospheric ambient glows -->
+            <div
+              class="absolute -top-32 -left-32 w-80 h-80 rounded-full blur-3xl bg-cyan-400/10 pointer-events-none"
+            ></div>
+            <div
+              class="absolute -bottom-32 -right-32 w-80 h-80 rounded-full blur-3xl bg-violet-500/10 pointer-events-none"
+            ></div>
+
+            <div
+              class="relative z-10 grid lg:grid-cols-[1.1fr_.9fr] gap-10 items-center"
+            >
+              <div>
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                  <span
+                    class="px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-cyan-400/10 text-cyan-300 border border-cyan-300/30"
+                  >
+                    Featured Session
+                  </span>
+                  <span class="text-xs text-slate-400 tracking-wider font-mono"
+                    >NEW BUILDING - 2</span
+                  >
+                </div>
+
+                <h2
+                  class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight leading-none uppercase"
+                >
+                  Workshop <br />
+                  <span class="gradient-text">Details</span>
+                </h2>
+
+                <!-- Key Meta Info Grid -->
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                  <div
+                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10"
+                  >
+                    <div
+                      class="text-xs text-slate-400 uppercase tracking-wider mb-1"
+                    >
+                      Date
+                    </div>
+                    <div class="font-display text-lg font-bold text-white">
+                      Thursday, 1 October
+                    </div>
+                  </div>
+                  <div
+                    class="p-4 rounded-2xl bg-white/[0.03] border border-white/10"
+                  >
+                    <div
+                      class="text-xs text-slate-400 uppercase tracking-wider mb-1"
+                    >
+                      Time
+                    </div>
+                    <div class="font-display text-lg font-bold text-cyan-200">
+                      11:00 AM – 1:00 PM
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conducted By -->
+                <div class="mt-8 pt-6 border-t border-white/10">
+                  <div
+                    class="text-xs uppercase tracking-widest text-slate-400 mb-3 font-semibold"
+                  >
+                    Conducted By
+                  </div>
+                  <div class="flex flex-wrap gap-3">
+                    <div
+                      class="px-4 py-2.5 rounded-xl bg-slate-900/80 border border-violet-400/30 text-slate-200 font-semibold text-sm flex items-center gap-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-violet-400"></span>
+                      Mr Shahed Alam
+                    </div>
+                    <div
+                      class="px-4 py-2.5 rounded-xl bg-slate-900/80 border border-violet-400/30 text-slate-200 font-semibold text-sm flex items-center gap-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-violet-400"></span>
+                      Mamunur Rashid
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Key Benefits Checklist -->
+                <ul class="mt-8 space-y-3 text-slate-300 text-sm">
+                  <li class="flex items-center gap-3">
+                    <span class="text-cyan-300 font-bold">›</span>
+                    <span class="font-semibold text-white">FREE</span> &nbsp;for
+                    all members
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span class="text-cyan-300 font-bold">›</span>
+                    <span class="font-semibold text-white">100 TK</span>
+                    &nbsp;registration fee for non-members
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span class="text-cyan-300 font-bold">›</span>
+                    <span class="gradient-text font-semibold"
+                      >Internationally recognized certificates</span
+                    >
+                    will be provided
+                  </li>
+                </ul>
+
+                <div class="mt-10 flex flex-wrap gap-4">
+                  <a href="#join" class="btn-primary">Register for Workshop</a>
+                </div>
+              </div>
+
+              <!-- Graphic Card Side with Updated Club Logo -->
+              <div
+                class="relative flex items-center justify-center p-6 lg:p-8 rounded-3xl bg-slate-950/40 border border-white/5"
+              >
+                <div class="text-center space-y-6">
+                  <!-- Quantum Club Logo Badge -->
+                  <div
+                    class="w-32 h-32 mx-auto rounded-full border border-cyan-300/30 bg-[#121626] flex items-center justify-center p-1 relative shadow-[0_0_35px_rgba(102,247,255,0.2)] overflow-hidden"
+                  >
+                    <img
+                      src="781804597_17896312809598742_6676653192766011676_n.jpg"
+                      alt="SJIS Quantum Club logo"
+                      class="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+
+                  <div class="space-y-2">
+                    <div
+                      class="text-xs uppercase tracking-[0.2em] text-slate-400"
+                    >
+                      Location Venue
+                    </div>
+                    <div class="text-xl font-bold font-display text-white">
+                      New Building – 2
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-xs mx-auto">
+                      St. Joseph International School Campus, Mohammadpur, Dhaka
+                    </p>
+                  </div>
+
+                  <div
+                    class="pt-4 border-t border-white/10 flex items-center justify-center gap-4 text-xs text-slate-400"
+                  >
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      Limited Seats
+                    </div>
+                    <span>•</span>
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                      Certificate Included
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TOPICS -->
+      <section id="fields" class="py-24 sm:py-32 relative">
+        <div class="section-wrap">
+          <div
+            class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6"
+          >
+            <div class="reveal">
+              <div class="eyebrow mb-4">03 · Quantum fields</div>
+              <h2 class="font-display text-4xl sm:text-5xl font-semibold">
+                Six doors into modern physics.
+              </h2>
+            </div>
+            <p class="max-w-xl text-slate-400 leading-7 reveal">
+              Each area can become a workshop, mini-project, presentation,
+              debate, problem set or interactive simulation.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+            <article class="topic-card glass rounded-3xl p-6 reveal tilt-card">
+              <div class="icon-orb">⚛</div>
+              <div
+                class="mt-5 text-xs text-cyan-300/80 uppercase tracking-[.18em]"
+              >
+                01 · Quantum
+              </div>
+              <h3 class="font-display text-2xl font-semibold mt-2">
+                Quantum Mechanics
+              </h3>
+              <p class="text-sm text-slate-400 leading-7 mt-3">
+                Wave–particle duality, probability amplitudes, measurement,
+                uncertainty and superposition.
+              </p>
+            </article>
+
+            <article class="topic-card glass rounded-3xl p-6 reveal tilt-card">
+              <div class="icon-orb">⌁</div>
+              <div
+                class="mt-5 text-xs text-violet-300/80 uppercase tracking-[.18em]"
+              >
+                02 · Matter
+              </div>
+              <h3 class="font-display text-2xl font-semibold mt-2">
+                Particle Physics
+              </h3>
+              <p class="text-sm text-slate-400 leading-7 mt-3">
+                Elementary particles, forces, antimatter, detectors and the
+                Standard Model.
+              </p>
+            </article>
+
+            <article class="topic-card glass rounded-3xl p-6 reveal tilt-card">
+              <div class="icon-orb">✦</div>
+              <div
+                class="mt-5 text-xs text-mint-300/80 uppercase tracking-[.18em]"
+              >
+                03 · Cosmos
+              </div>
+              <h3 class="font-display text-2xl font-semibold mt-2">
+                Astrophysics
+              </h3>
+              <p class="text-sm text-slate-400 leading-7 mt-3">
+                Stars, galaxies, black holes, cosmic radiation and the history
+                of the universe.
+              </p>
+            </article>
+
+            <article class="topic-card glass rounded-3xl p-6 reveal tilt-card">
+              <div class="icon-orb">◌</div>
+              <div
+                class="mt-5 text-xs text-pink-300/80 uppercase tracking-[.18em]"
+              >
+                04 · Computing
+              </div>
+              <h3 class="font-display text-2xl font-semibold mt-2">
+                Quantum Computing
+              </h3>
+              <p class="text-sm text-slate-400 leading-7 mt-3">
+                Qubits, gates, measurement, algorithms and why quantum
+                information behaves differently.
+              </p>
+            </article>
+
+            <article class="topic-card glass rounded-3xl p-6 reveal tilt-card">
+              <div class="icon-orb">⟐</div>
+              <div
+                class="mt-5 text-xs text-sky-300/80 uppercase tracking-[.18em]"
+              >
+                05 · Spacetime
+              </div>
+              <h3 class="font-display text-2xl font-semibold mt-2">
+                Relativity
+              </h3>
+              <p class="text-sm text-slate-400 leading-7 mt-3">
+                Reference frames, time dilation, gravity as geometry and the
+                fabric of spacetime.
+              </p>
+            </article>
+
+            <article class="topic-card glass rounded-3xl p-6 reveal tilt-card">
+              <div class="icon-orb">∿</div>
+              <div
+                class="mt-5 text-xs text-amber-200/80 uppercase tracking-[.18em]"
+              >
+                06 · Discovery
+              </div>
+              <h3 class="font-display text-2xl font-semibold mt-2">
+                Experimental Physics
+              </h3>
+              <p class="text-sm text-slate-400 leading-7 mt-3">
+                Design experiments, measure carefully, analyze uncertainty and
+                turn observations into evidence.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUANTUM LAB -->
+      <section id="lab" class="py-24 sm:py-32">
+        <div class="section-wrap">
+          <div class="eyebrow mb-4 reveal">04 · Interactive quantum lab</div>
+          <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-8 items-stretch">
+            <div class="reveal">
+              <h2
+                class="font-display text-4xl sm:text-5xl font-semibold leading-tight"
+              >
+                See an idea <span class="gradient-text">move.</span>
+              </h2>
+              <p class="mt-5 text-slate-400 leading-8">
+                Switch between simple visual experiments. The animations are
+                intentionally educational rather than mathematically exact, so
+                students can build intuition first.
+              </p>
+
+              <div class="mt-7 flex flex-wrap gap-2">
+                <button
+                  class="lab-tab pill !text-white !border-cyan-300/30 bg-cyan-300/5"
+                  data-lab="atom"
+                >
+                  Atom
+                </button>
+                <button class="lab-tab pill" data-lab="double">
+                  Double Slit
+                </button>
+                <button class="lab-tab pill" data-lab="entangle">
+                  Entanglement
+                </button>
+              </div>
+
+              <div class="mt-7 glass rounded-3xl p-5">
+                <div class="text-xs uppercase tracking-[.18em] text-slate-500">
+                  Current experiment
+                </div>
+                <h3 id="labTitle" class="font-display text-2xl mt-2">
+                  Electron probability cloud
+                </h3>
+                <p id="labDesc" class="text-sm text-slate-400 leading-7 mt-2">
+                  A stylized visual showing an electron as a probability
+                  distribution around a nucleus.
+                </p>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-2 reveal">
+              <div class="lab-screen rounded-[22px] micro-grid">
+                <canvas id="labCanvas" class="lab-canvas"></canvas>
+                <div class="lab-overlay"></div>
+                <div class="lab-topbar">
+                  <div class="lab-status">
+                    <span class="lab-status-dot"></span
+                    ><span>Live experiment</span>
+                  </div>
+                  <span id="labModeChip" class="lab-chip"
+                    >PROBABILITY CLOUD</span
+                  >
+                </div>
+                <div id="labCaption" class="lab-caption">
+                  Stylized quantum visualization
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="py-24 sm:py-32 relative">
+        <div class="section-wrap">
+          <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-12">
+            <div class="reveal">
+              <div class="eyebrow mb-4">05 · Quantum journey</div>
+              <h2 class="font-display text-4xl sm:text-5xl font-semibold">
+                From the first quantum idea to the next generation.
+              </h2>
+              <p class="text-slate-400 mt-5 leading-8">
+                Use this timeline as a visual starting point for club talks and
+                student research topics.
+              </p>
+            </div>
+
+            <div class="relative reveal">
+              <div class="timeline-line"></div>
+
+              <div class="timeline-item pb-10">
+                <div class="timeline-dot"></div>
+                <div class="text-xs text-cyan-300 uppercase tracking-[.18em]">
+                  1900
+                </div>
+                <h3 class="font-display text-2xl font-semibold mt-2">
+                  Planck and the quantum hypothesis
+                </h3>
+                <p class="text-sm text-slate-400 mt-2 leading-7">
+                  Energy enters physics through discrete packets in a
+                  breakthrough that reshaped classical thinking.
+                </p>
+              </div>
+
+              <div class="timeline-item pb-10">
+                <div class="timeline-dot" style="border-color: #9b7cff"></div>
+                <div class="text-xs text-violet-300 uppercase tracking-[.18em]">
+                  1905
+                </div>
+                <h3 class="font-display text-2xl font-semibold mt-2">
+                  Einstein and light quanta
+                </h3>
+                <p class="text-sm text-slate-400 mt-2 leading-7">
+                  The photoelectric effect helped establish a deeper link
+                  between light and quantization.
+                </p>
+              </div>
+
+              <div class="timeline-item pb-10">
+                <div class="timeline-dot" style="border-color: #7cffc4"></div>
+                <div class="text-xs text-mint-300 uppercase tracking-[.18em]">
+                  1920s
+                </div>
+                <h3 class="font-display text-2xl font-semibold mt-2">
+                  Wave mechanics and a new language
+                </h3>
+                <p class="text-sm text-slate-400 mt-2 leading-7">
+                  Schrödinger, Heisenberg and others developed mathematical
+                  frameworks for quantum phenomena.
+                </p>
+              </div>
+
+              <div class="timeline-item pb-10">
+                <div class="timeline-dot" style="border-color: #ff7ae6"></div>
+                <div class="text-xs text-pink-300 uppercase tracking-[.18em]">
+                  Today
+                </div>
+                <h3 class="font-display text-2xl font-semibold mt-2">
+                  Quantum information & frontier science
+                </h3>
+                <p class="text-sm text-slate-400 mt-2 leading-7">
+                  Quantum technologies connect physics with computing, sensing,
+                  communication and research.
+                </p>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="text-xs text-cyan-300 uppercase tracking-[.18em]">
+                  SJIS
+                </div>
+                <h3 class="font-display text-2xl font-semibold mt-2">
+                  Students become explorers
+                </h3>
+                <p class="text-sm text-slate-400 mt-2 leading-7">
+                  The club turns difficult ideas into approachable questions,
+                  activities, projects and conversations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOIN SECTION WITH INSTAGRAM LINK -->
+      <section id="join" class="py-24 sm:py-32">
+        <div class="section-wrap">
+          <div
+            class="relative overflow-hidden glass rounded-[2rem] p-8 sm:p-12 noise reveal"
+          >
+            <div
+              class="absolute -top-28 -right-28 w-72 h-72 rounded-full blur-3xl bg-cyan-300/10"
+            ></div>
+            <div
+              class="absolute -bottom-36 left-1/3 w-96 h-96 rounded-full blur-3xl bg-violet-400/10"
+            ></div>
+
+            <div class="relative grid lg:grid-cols-[1fr_auto] items-end gap-8">
+              <div>
+                <div class="eyebrow mb-4">06 · Join the exploration</div>
+                <h2
+                  class="font-display text-4xl sm:text-6xl font-semibold max-w-3xl leading-tight"
+                >
+                  Curiosity is the only
+                  <span class="gradient-text">entry requirement.</span>
+                </h2>
+                <p class="text-slate-400 max-w-2xl leading-8 mt-5">
+                  Interested in physics, astronomy, experiments, mathematics,
+                  simulation or simply asking “why”? Connect with the club and
+                  take part in the next activity.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61593544353894"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-primary"
+                >
+                  Facebook ↗
+                </a>
+                <a
+                  href="https://www.instagram.com/quantumclub.sjis/?hl=bn"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-ghost !border-pink-500/30 hover:!border-pink-400"
+                >
+                  Instagram ↗
+                </a>
+                <a
+                  href="https://www.sjis.edu.bd"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-ghost"
+                >
+                  SJIS Website ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/8">
+      <div class="section-wrap py-10">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+        >
+          <div>
+            <div class="text-xs uppercase tracking-[.18em] text-slate-500">
+              SJIS · Mohammadpur, Dhaka
+            </div>
+            <div class="font-display text-2xl font-semibold mt-2">
+              Quantum Club
+            </div>
+            <p class="text-sm text-slate-500 mt-2 max-w-xl">
+              Explore the smallest particles, the largest structures and the
+              questions between them.
+            </p>
+          </div>
+          <div class="text-sm text-slate-500 md:text-right">
+            <div class="flex md:justify-end gap-4">
+              <a
+                href="https://www.facebook.com/profile.php?id=61593544353894"
+                target="_blank"
+                rel="noopener"
+                class="hover:text-cyan-200"
+                >Facebook</a
+              >
+              <span>•</span>
+              <a
+                href="https://www.instagram.com/quantumclub.sjis/?hl=bn"
+                target="_blank"
+                rel="noopener"
+                class="hover:text-pink-300"
+                >Instagram</a
+              >
+            </div>
+            <div class="mt-2">
+              <a
+                href="https://www.sjis.edu.bd"
+                target="_blank"
+                rel="noopener"
+                class="hover:text-cyan-200"
+                >St. Joseph International School</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-10 pt-5 border-t border-white/7 flex flex-col sm:flex-row gap-2 justify-between text-xs text-slate-600"
+        >
+          <span>© <span id="year"></span> SJIS Quantum Club</span>
+          <span>Designed as a single-page educational club experience.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ---------------------------
+       Shared helpers
+    ----------------------------*/
+      const $ = (s, p = document) => p.querySelector(s);
+      const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      /* ---------------------------
+       Custom cursor + spotlight
+    ----------------------------*/
+      const cursorDot = $("#cursorDot");
+      const cursorRing = $("#cursorRing");
+      let mouseX = innerWidth / 2,
+        mouseY = innerHeight / 2;
+      let ringX = mouseX,
+        ringY = mouseY;
+
+      addEventListener("pointermove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        document.documentElement.style.setProperty("--mx", mouseX + "px");
+        document.documentElement.style.setProperty("--my", mouseY + "px");
+        cursorDot.style.left = mouseX + "px";
+        cursorDot.style.top = mouseY + "px";
+      });
+
+      function animateCursor() {
+        ringX += (mouseX - ringX) * 0.17;
+        ringY += (mouseY - ringY) * 0.17;
+        cursorRing.style.left = ringX + "px";
+        cursorRing.style.top = ringY + "px";
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+
+      $$("a,button,.tilt-card").forEach((el) => {
+        el.addEventListener("mouseenter", () =>
+          document.body.classList.add("cursor-hover"),
+        );
+        el.addEventListener("mouseleave", () =>
+          document.body.classList.remove("cursor-hover"),
+        );
+      });
+
+      /* ---------------------------
+       Mobile menu
+    ----------------------------*/
+      const menuBtn = $("#menuBtn");
+      const mobileMenu = $("#mobileMenu");
+      menuBtn.addEventListener("click", () =>
+        mobileMenu.classList.toggle("open"),
+      );
+      $$("#mobileMenu a").forEach((a) =>
+        a.addEventListener("click", () => mobileMenu.classList.remove("open")),
+      );
+
+      /* ---------------------------
+       Scroll reveal
+    ----------------------------*/
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      $$(".reveal").forEach((el) => revealObserver.observe(el));
+
+      /* ---------------------------
+       Scroll-reactive hero orbit
+    ----------------------------*/
+      const heroOrbit = $("#heroOrbit");
+      addEventListener(
+        "scroll",
+        () => {
+          const progress = Math.min(
+            1,
+            scrollY / Math.max(1, innerHeight * 0.85),
+          );
+          if (heroOrbit) {
+            heroOrbit.style.transform = `translate3d(${(mouseX - innerWidth / 2) * 0.018}px, ${(mouseY - innerHeight / 2) * 0.012 + progress * 15}px, 0) rotate(${progress * 11}deg)`;
+          }
+        },
+        { passive: true },
+      );
+
+      /* ---------------------------
+       3D tilt cards
+    ----------------------------*/
+      $$(".tilt-card").forEach((card) => {
+        card.addEventListener("pointermove", (e) => {
+          if (innerWidth <= 900) return;
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width;
+          const y = (e.clientY - r.top) / r.height;
+          const rx = (0.5 - y) * 7;
+          const ry = (x - 0.5) * 8;
+          card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+        });
+        card.addEventListener(
+          "pointerleave",
+          () => (card.style.transform = ""),
+        );
+      });
+
+      /* ---------------------------
+       Hero quantum particle canvas
+    ----------------------------*/
+      const qCanvas = $("#quantumCanvas");
+      const qCtx = qCanvas.getContext("2d");
+      let qParticles = [];
+      let dpr = Math.min(devicePixelRatio || 1, 2);
+
+      function resizeQuantumCanvas() {
+        const rect = qCanvas.getBoundingClientRect();
+        qCanvas.width = rect.width * dpr;
+        qCanvas.height = rect.height * dpr;
+        qCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      addEventListener("resize", resizeQuantumCanvas);
+      resizeQuantumCanvas();
+
+      function initQParticles() {
+        const area = qCanvas.clientWidth * qCanvas.clientHeight;
+        const count = Math.min(160, Math.max(55, Math.floor(area / 8500)));
+        qParticles = Array.from({ length: count }, (_, i) => ({
+          x: Math.random() * qCanvas.clientWidth,
+          y: Math.random() * qCanvas.clientHeight,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          r: Math.random() * 1.8 + 0.45,
+          a: Math.random() * 0.42 + 0.14,
+          phase: Math.random() * Math.PI * 2,
+        }));
+      }
+      initQParticles();
+
+      let qFrame = 0;
+      function drawQParticles() {
+        qFrame += 0.01;
+        qCtx.clearRect(0, 0, qCanvas.clientWidth, qCanvas.clientHeight);
+        const w = qCanvas.clientWidth,
+          h = qCanvas.clientHeight;
+
+        qParticles.forEach((p, i) => {
+          p.phase += 0.01;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < -10) p.x = w + 10;
+          if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10;
+          if (p.y > h + 10) p.y = -10;
+
+          const dx = mouseX - p.x,
+            dy = mouseY - p.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 150) {
+            const force = ((150 - dist) / 150) * 0.055;
+            p.x -= dx * force;
+            p.y -= dy * force;
+          }
+
+          const alpha = p.a + Math.sin(p.phase + i) * 0.07;
+          qCtx.beginPath();
+          qCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          qCtx.fillStyle = `rgba(155,220,255,${Math.max(0.05, alpha)})`;
+          qCtx.fill();
+        });
+
+        for (let i = 0; i < qParticles.length; i++) {
+          for (let j = i + 1; j < qParticles.length; j++) {
+            const a = qParticles[i],
+              b = qParticles[j];
+            const dx = a.x - b.x,
+              dy = a.y - b.y;
+            const d = Math.hypot(dx, dy);
+            if (d < 94) {
+              const alpha = (1 - d / 94) * 0.055;
+              qCtx.strokeStyle = `rgba(102,247,255,${alpha})`;
+              qCtx.lineWidth = 1;
+              qCtx.beginPath();
+              qCtx.moveTo(a.x, a.y);
+              qCtx.lineTo(b.x, b.y);
+              qCtx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(drawQParticles);
+      }
+      drawQParticles();
+
+      /* ---------------------------
+       Interactive lab canvas
+    ----------------------------*/
+      const labCanvas = $("#labCanvas");
+      const labCtx = labCanvas.getContext("2d");
+      let labMode = "atom";
+      let labMouse = { x: 0, y: 0, active: false };
+      const labData = {
+        atom: {
+          title: "Electron probability cloud",
+          desc: "A stylized visual showing an electron as a probability distribution around a nucleus.",
+          chip: "PROBABILITY CLOUD",
+          caption: "Electron density is shown as a glowing distribution.",
+        },
+        double: {
+          title: "Double-slit interference",
+          desc: "Photons travel from a source through two narrow slits and accumulate on a detection screen, revealing an interference pattern.",
+          chip: "PHOTON · TWO SLITS",
+          caption:
+            "Each dot is a detected photon; the pattern builds over time.",
+        },
+        entangle: {
+          title: "Entanglement pair",
+          desc: "Two linked particle states are represented as coordinated oscillations for intuition.",
+          chip: "CORRELATED STATES",
+          caption: "A conceptual visualization of correlated quantum states.",
+        },
+      };
+
+      let labDpr = Math.min(devicePixelRatio || 1, 2);
+
+      function resizeLab() {
+        const r = labCanvas.getBoundingClientRect();
+        labDpr = Math.min(devicePixelRatio || 1, 2);
+        labCanvas.width = Math.max(1, Math.floor(r.width * labDpr));
+        labCanvas.height = Math.max(1, Math.floor(r.height * labDpr));
+        labCtx.setTransform(labDpr, 0, 0, labDpr, 0, 0);
+        resetDoubleSlit(true);
+      }
+      addEventListener("resize", resizeLab);
+
+      labCanvas.addEventListener("pointermove", (e) => {
+        const r = labCanvas.getBoundingClientRect();
+        labMouse.x = e.clientX - r.left;
+        labMouse.y = e.clientY - r.top;
+        labMouse.active = true;
+      });
+      labCanvas.addEventListener(
+        "pointerleave",
+        () => (labMouse.active = false),
+      );
+
+      function labText() {
+        $("#labTitle").textContent = labData[labMode].title;
+        $("#labDesc").textContent = labData[labMode].desc;
+        $("#labModeChip").textContent = labData[labMode].chip;
+        $("#labCaption").textContent = labData[labMode].caption;
+      }
+
+      $$(".lab-tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          $$(".lab-tab").forEach((x) =>
+            x.classList.remove(
+              "!text-white",
+              "!border-cyan-300/30",
+              "bg-cyan-300/5",
+            ),
+          );
+          btn.classList.add(
+            "!text-white",
+            "!border-cyan-300/30",
+            "bg-cyan-300/5",
+          );
+          labMode = btn.dataset.lab;
+          if (labMode === "double") resetDoubleSlit(true);
+          labText();
+        });
+      });
+
+      function glowCircle(x, y, r, rgba, blur = 18) {
+        labCtx.save();
+        labCtx.shadowBlur = blur;
+        labCtx.shadowColor = rgba;
+        labCtx.fillStyle = rgba;
+        labCtx.beginPath();
+        labCtx.arc(x, y, r, 0, Math.PI * 2);
+        labCtx.fill();
+        labCtx.restore();
+      }
+
+      /* ---------- Atom ---------- */
+      function drawAtomLab(w, h) {
+        const cx = w * 0.5,
+          cy = h * 0.52;
+
+        for (let i = 0; i < 120; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const rr = Math.random() * 22;
+          const x = cx + Math.cos(a) * rr;
+          const y = cy + Math.sin(a) * rr;
+          labCtx.fillStyle = `rgba(155,124,255,${0.04 + Math.random() * 0.06})`;
+          labCtx.fillRect(x, y, 1.5, 1.5);
+        }
+
+        const orbitalRadii = [42, 70, 101, 132];
+        orbitalRadii.forEach((r, idx) => {
+          labCtx.strokeStyle = `rgba(${idx % 2 ? 155 : 102},${idx % 2 ? 124 : 247},255,${0.11 - idx * 0.012})`;
+          labCtx.lineWidth = 1;
+          labCtx.beginPath();
+          labCtx.ellipse(cx, cy, r, r * 0.55, idx * 0.42, 0, Math.PI * 2);
+          labCtx.stroke();
+        });
+
+        for (let i = 0; i < 900; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const rr = 52 + Math.abs(randn()) * 43;
+          const squash = 0.55 + 0.12 * Math.sin(labT + i * 0.02);
+          const x = cx + Math.cos(a) * rr;
+          const y = cy + Math.sin(a) * rr * squash;
+          const alpha = Math.max(
+            0.018,
+            0.13 * (1 - Math.min(1, Math.abs(rr - 88) / 95)),
+          );
+          labCtx.fillStyle = `rgba(119,232,255,${alpha})`;
+          labCtx.fillRect(x, y, 1.3, 1.3);
+        }
+
+        glowCircle(cx, cy, 13, "rgba(155,124,255,.75)", 34);
+        glowCircle(cx, cy, 4.2, "rgba(255,255,255,.96)", 12);
+
+        const electrons = [
+          [72, 0.78, "rgba(102,247,255,.95)"],
+          [104, -0.43, "rgba(155,124,255,.95)"],
+          [132, 1.78, "rgba(124,255,196,.95)"],
+        ];
+        electrons.forEach(([r, phase, col], idx) => {
+          const a = labT * (0.7 + idx * 0.16) + phase;
+          const ex = cx + Math.cos(a) * r;
+          const ey = cy + Math.sin(a) * r * 0.55;
+          glowCircle(ex, ey, 3.1, col, 16);
+        });
+      }
+
+      /* ---------- Double slit ---------- */
+      let doublePhotons = [];
+      let doubleHits = [];
+      let doubleSpawnClock = 0;
+
+      function resetDoubleSlit(full = false) {
+        const w = labCanvas.clientWidth || 800;
+        const h = labCanvas.clientHeight || 390;
+        if (full || !doubleHits.length) {
+          doubleHits = Array.from({ length: 74 }, () => 0);
+        }
+        doublePhotons = [];
+        doubleSpawnClock = 0;
+      }
+
+      function interferenceProbability(y, mid, h) {
+        const normalized = (y - mid) / (h * 0.42);
+        const envelope = Math.exp(-normalized * normalized * 1.45);
+        const fringes = 0.1 + 0.9 * Math.pow(Math.cos(normalized * 12.0), 2);
+        return envelope * fringes;
+      }
+
+      function sampleDetectionY(h) {
+        const mid = h * 0.5;
+        let bestY = mid,
+          bestP = 0;
+        for (let tries = 0; tries < 18; tries++) {
+          const y = 16 + Math.random() * (h - 32);
+          const p = interferenceProbability(y, mid, h);
+          if (Math.random() < p / 1.02) return y;
+          if (p > bestP) {
+            bestP = p;
+            bestY = y;
+          }
+        }
+        return bestY;
+      }
+
+      function spawnPhoton(w, h) {
+        const sourceX = w * 0.1;
+        const barrierX = w * 0.45;
+        const slitOffset = 18;
+        const mid = h * 0.5;
+        const slitChoice = Math.random() < 0.5 ? -1 : 1;
+        const slitY = mid + slitChoice * slitOffset;
+
+        doublePhotons.push({
+          x: sourceX,
+          y: mid + (Math.random() - 0.5) * 11,
+          stage: 0,
+          targetY: slitY,
+          detectY: sampleDetectionY(h),
+          vx: 2.8 + Math.random() * 0.8,
+          vy: (slitY - mid) * 0.015,
+          phase: Math.random() * Math.PI * 2,
+          barrierX,
+          hit: false,
+        });
+      }
+
+      function drawDoubleSlit(w, h) {
+        const sourceX = w * 0.1;
+        const barrierX = w * 0.45;
+        const screenX = w * 0.88;
+        const mid = h * 0.5;
+        const topSlit = mid - 18;
+        const bottomSlit = mid + 18;
+
+        const beamGrad = labCtx.createLinearGradient(sourceX, 0, screenX, 0);
+        beamGrad.addColorStop(0, "rgba(102,247,255,.015)");
+        beamGrad.addColorStop(0.45, "rgba(102,247,255,.035)");
+        beamGrad.addColorStop(1, "rgba(155,124,255,.012)");
+        labCtx.fillStyle = beamGrad;
+        labCtx.fillRect(sourceX, 24, screenX - sourceX, h - 48);
+
+        glowCircle(sourceX, mid, 6, "rgba(102,247,255,.96)", 24);
+        labCtx.fillStyle = "rgba(255,255,255,.62)";
+        labCtx.font = "600 9px Inter, sans-serif";
+        labCtx.fillText("SOURCE", sourceX - 22, mid + 24);
+
+        labCtx.fillStyle = "rgba(217,225,245,.17)";
+        labCtx.fillRect(barrierX, 28, 3, mid - 48);
+        labCtx.fillRect(barrierX, mid + 48, 3, h - mid - 76);
+
+        labCtx.shadowBlur = 18;
+        labCtx.shadowColor = "rgba(102,247,255,.55)";
+        labCtx.fillStyle = "rgba(102,247,255,.72)";
+        labCtx.fillRect(barrierX, topSlit - 7, 3, 14);
+        labCtx.fillRect(barrierX, bottomSlit - 7, 3, 14);
+        labCtx.shadowBlur = 0;
+
+        const screenGrad = labCtx.createLinearGradient(
+          screenX,
+          0,
+          screenX + 9,
+          0,
+        );
+        screenGrad.addColorStop(0, "rgba(102,247,255,.78)");
+        screenGrad.addColorStop(1, "rgba(155,124,255,.15)");
+        labCtx.fillStyle = screenGrad;
+        labCtx.fillRect(screenX, 24, 4, h - 48);
+
+        labCtx.fillStyle = "rgba(255,255,255,.55)";
+        labCtx.font = "600 9px Inter, sans-serif";
+        labCtx.fillText("DETECTOR", screenX - 16, 18);
+
+        for (let i = 0; i < doubleHits.length; i++) {
+          const y = 30 + (i / (doubleHits.length - 1)) * (h - 60);
+          const maxCount = Math.max(2, ...doubleHits);
+          const val = doubleHits[i] / maxCount;
+          const barW = 32 * val;
+          const p = interferenceProbability(y, mid, h);
+          labCtx.fillStyle = `rgba(155,124,255,${0.045 + p * 0.16})`;
+          labCtx.fillRect(screenX + 8, y - 1.5, barW, 3);
+        }
+
+        doubleSpawnClock += 0.42;
+        if (doubleSpawnClock >= 1) {
+          doubleSpawnClock = 0;
+          spawnPhoton(w, h);
+        }
+
+        doublePhotons.forEach((p) => {
+          if (p.stage === 0) {
+            p.x += p.vx;
+            const dx = p.targetY - p.y;
+            p.y += dx * 0.045;
+            if (p.x >= p.barrierX - 5) {
+              p.stage = 1;
+              p.x = p.barrierX + 7;
+              p.y = p.targetY;
+              p.vx = 2.6 + Math.random() * 0.65;
+            }
+          } else {
+            p.x += p.vx;
+            const t = Math.min(
+              1,
+              (p.x - (barrierX + 7)) / (screenX - (barrierX + 7)),
+            );
+            const desired = mid + (p.detectY - mid) * Math.min(1, t * 1.05);
+            p.y += (desired - p.y) * 0.055;
+            p.y += Math.sin(labT * 6 + p.phase) * 0.28;
+            if (p.x >= screenX) {
+              p.x = screenX;
+              if (!p.hit) {
+                p.hit = true;
+                const bin = Math.max(
+                  0,
+                  Math.min(
+                    doubleHits.length - 1,
+                    Math.floor(((p.y - 30) / (h - 60)) * doubleHits.length),
+                  ),
+                );
+                doubleHits[bin]++;
+              }
+            }
+          }
+        });
+
+        doublePhotons.forEach((p) => {
+          labCtx.fillStyle =
+            p.stage === 0 ? "rgba(124,255,196,.95)" : "rgba(102,247,255,.82)";
+          labCtx.shadowBlur = 10;
+          labCtx.shadowColor =
+            p.stage === 0 ? "rgba(124,255,196,.7)" : "rgba(102,247,255,.7)";
+          labCtx.beginPath();
+          labCtx.arc(p.x, p.y, p.stage === 0 ? 2.1 : 1.65, 0, Math.PI * 2);
+          labCtx.fill();
+          labCtx.shadowBlur = 0;
+        });
+
+        const sweep = screenX + 9 + Math.sin(labT * 1.6) * 4;
+        labCtx.fillStyle = "rgba(102,247,255,.14)";
+        labCtx.fillRect(sweep, 30, 2, h - 60);
+
+        labCtx.fillStyle = "rgba(190,203,230,.38)";
+        labCtx.font = "500 9px Inter, sans-serif";
+        labCtx.fillText("SLIT 1", barrierX - 22, topSlit - 12);
+        labCtx.fillText("SLIT 2", barrierX - 22, bottomSlit + 20);
+
+        if (doublePhotons.length > 110) {
+          doublePhotons = doublePhotons.slice(-90);
+        }
+      }
+
+      /* ---------- Entanglement ---------- */
+      function drawEntangle(w, h) {
+        const y = h * 0.54;
+        const x1 = w * 0.27,
+          x2 = w * 0.73;
+        const phase = Math.sin(labT * 2.2);
+        const aY = y + phase * 48;
+        const bY = y - phase * 48;
+
+        const conn = labCtx.createLinearGradient(x1, y, x2, y);
+        conn.addColorStop(0, "rgba(102,247,255,0)");
+        conn.addColorStop(0.5, "rgba(155,124,255,.28)");
+        conn.addColorStop(1, "rgba(102,247,255,0)");
+        labCtx.strokeStyle = conn;
+        labCtx.lineWidth = 2;
+        labCtx.beginPath();
+        labCtx.moveTo(x1, y);
+        labCtx.lineTo(x2, y);
+        labCtx.stroke();
+
+        for (let k = 0; k < 7; k++) {
+          labCtx.strokeStyle = `rgba(155,124,255,${0.025 + k * 0.008})`;
+          labCtx.beginPath();
+          for (let x = x1; x <= x2; x += 4) {
+            const u = (x - x1) / (x2 - x1);
+            const yy =
+              y +
+              Math.sin(u * Math.PI * 4 + labT * 2.1 + k * 0.55) * (5 + k * 0.7);
+            if (x === x1) labCtx.moveTo(x, yy);
+            else labCtx.lineTo(x, yy);
+          }
+          labCtx.stroke();
+        }
+
+        glowCircle(x1, aY, 9, "rgba(102,247,255,.96)", 28);
+        glowCircle(x2, bY, 9, "rgba(155,124,255,.96)", 28);
+
+        for (let i = 0; i < 18; i++) {
+          const u = (i + 1) / 19;
+          const x = x1 + (x2 - x1) * u;
+          const yy = aY + (bY - aY) * u + Math.sin(labT * 2.5 + i) * 4;
+          glowCircle(x, yy, 1.15, "rgba(255,255,255,.55)", 8);
+        }
+
+        labCtx.fillStyle = "rgba(226,234,255,.7)";
+        labCtx.font = "600 11px Inter, sans-serif";
+        labCtx.fillText("PARTICLE A", x1 - 29, aY + 34);
+        labCtx.fillText("PARTICLE B", x2 - 30, bY - 26);
+
+        if (labMouse.active) {
+          const dx = labMouse.x - x1,
+            dy = labMouse.y - aY;
+          const d = Math.hypot(dx, dy);
+          if (d < 80) {
+            labCtx.strokeStyle = "rgba(102,247,255,.28)";
+            labCtx.beginPath();
+            labCtx.arc(x1, aY, 22 + Math.sin(labT * 5) * 4, 0, Math.PI * 2);
+            labCtx.stroke();
+          }
+        }
+      }
+
+      function randn() {
+        let u = 0,
+          v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+
+      resizeLab();
+      labText();
+
+      let labT = 0;
+      function drawLab() {
+        labT += 0.018;
+        const w = labCanvas.clientWidth,
+          h = labCanvas.clientHeight;
+        labCtx.clearRect(0, 0, w, h);
+
+        if (labMode === "atom") drawAtomLab(w, h);
+        if (labMode === "double") drawDoubleSlit(w, h);
+        if (labMode === "entangle") drawEntangle(w, h);
+
+        requestAnimationFrame(drawLab);
+      }
+      drawLab();
+
+      /* ---------------------------
+       Active nav based on section
+    ----------------------------*/
+      const sections = $$("main section[id]");
+      const navLinks = $$(".nav-link");
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) => (link.style.color = ""));
+              const active = $(`.nav-link[href="#${entry.target.id}"]`);
+              if (active) active.style.color = "#fff";
+            }
+          });
+        },
+        { rootMargin: "-35% 0px -50% 0px", threshold: 0 },
+      );
+      sections.forEach((s) => navObserver.observe(s));
+    </script>
+  </body>
+</html>
